@@ -10,7 +10,7 @@ import Foundation
 import AVFoundation
 
 @objc public enum ItemPlayState : Int {
-    case waitToPlay = 0, playing, playing_and_will_replay, replaying, replayed
+    case waitToPlay, playing, playing_and_will_replay, replaying, replayed
 }
 
 @objc public protocol DMPlayableItemDelegate {
@@ -47,15 +47,14 @@ public class DMPlayableItem: AVPlayerItem {
         self.musicInfo["largePictureLocation"] = pic.replacingOccurrences(of:"mpic", with:"lpic")
 
         if aDict["aid"] != nil {
-            self.musicInfo["aid"] = aDict["aid"]
-            self.musicInfo["sid"] = aDict["sid"]
-            self.musicInfo["ssid"] = aDict["ssid"]
+            self.musicInfo["aid"] = aDict["aid"]!
+            self.musicInfo["sid"] = aDict["sid"]!
+            self.musicInfo["ssid"] = aDict["ssid"]!
             self.musicInfo["length"] = Float(String(aDict["length"]!))! * 1000
-            //self.musicInfo["rating_avg"] = Float(String(aDict["rating_avg"]!))
-            self.musicInfo["albumLocation"] = String(format:"%@%@",douban_URL_prefix, String(aDict["album"]))
+            self.musicInfo["albumLocation"] = String("\(douban_URL_prefix)\(String(aDict["album"]))")
         }
         
-        self.like = NSString(string: String(aDict["like"])).boolValue
+        self.like = NSString(string: String(aDict["like"]!)).boolValue
         self.playState = ItemPlayState.waitToPlay
         self.cover = nil
         
@@ -74,7 +73,7 @@ public class DMPlayableItem: AVPlayerItem {
     
     override public func observeValue(forKeyPath keyPath: String?, of object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutablePointer<Void>?) {
         if keyPath == "status" {
-            //DMLog("%@ status changed to %ld",musicInfo["title"],self.status)
+            print("\(#function) :: \(musicInfo["title"]!) status changed to \(self.status)")
             self.delegate?.playableItem(self, logStateChanged: self.status.rawValue)
         }
     }
@@ -99,7 +98,7 @@ public class DMPlayableItem: AVPlayerItem {
         
         let session = URLSession.shared().dataTask(with: request) { data, response, error in
             if error != nil || data == nil {
-                print(error)
+                print("\(#function) failed to get album image with reason \(error)")
                 self.cover = #imageLiteral(resourceName: "albumfail")
             } else {
                 self.cover = NSImage(data: data!)

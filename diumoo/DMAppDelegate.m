@@ -139,14 +139,13 @@
         @"volume" : @(1.0),
         @"versionsLimit" : @(100),
         @"displayAlbumCoverOnDock" : @(NSOnState),
-        @"enableGrowl" : @(NSOnState),
+        @"enableNotification" : @(NSOnState),
         @"enableEmulateITunes" : @(NSOnState),
         @"showDockIcon" : @(NSOnState),
         @"filterAds" : @(NSOnState),
         @"enableLog" : @(NSOnState),
         @"enableLogFile" : @(NSOnState),
         @"useMediaKey" : @(NSOnState),
-        @"useGlobalNotification" : @(NSOnState),
         @"musicQuality" : @(64),
         @"pro_musicQuality" : @(192)
     };
@@ -178,7 +177,7 @@
                                              keyShowPrefsPanel : [MASShortcut shortcutWithKeyCode:kVK_ANSI_P modifierFlags:flags] }];
 
     if ([defaults integerForKey:@"useMediaKey"] == NSOnState) {
-        //[mediakeyTap startWatchingMediaKeys];
+        [mediakeyTap startWatchingMediaKeys];
     }
 }
 

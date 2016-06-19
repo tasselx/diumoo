@@ -91,7 +91,11 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
+<<<<<<< HEAD
 	<string>2525</string>
+=======
+	<string>2561</string>
+>>>>>>> diumoo-remote/master
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.music</string>
 	<key>LSMinimumSystemVersion</key>

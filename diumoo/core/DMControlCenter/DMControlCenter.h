@@ -20,10 +20,8 @@
 #import <IOKit/pwr_mgt/IOPMLib.h>
 
 #import "diumoo-Swift.h"
-#import "DMPlaylistFetcher.h"
 #import "DMPanelWindowController.h"
 #import "DMPlayRecordHandler.h"
-#import "DMNotificationCenter.h"
 #import "NSDictionary+UrlEncoding.h"
 #import "DMService.h"
 #import "DMSearchPanelController.h"
@@ -66,5 +64,5 @@ typedef enum{
 -(void) volumeChange:(float)volume;
 
 //methods in DMPlayableItemDelegate
-- (void)playableItem:(DMPlayableItem * _Nonnull)item logStateChanged:(NSInteger)logStateChanged;
+- (void)playableItem:(DMPlayableItem * )item logStateChanged:(NSInteger)logStateChanged;
 @end
