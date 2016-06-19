@@ -1147,7 +1147,8 @@
 				LastUpgradeCheck = 0800;
 				TargetAttributes = {
 					F5148AAD1580E58D002B3D61 = {
-						DevelopmentTeam = MC98392EJC;
+						DevelopmentTeam = 8SZ7MXQFRB;
+						DevelopmentTeamName = "lee Tassel (Personal Team)";
 						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
